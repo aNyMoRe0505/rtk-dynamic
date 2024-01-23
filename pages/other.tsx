@@ -11,11 +11,12 @@ import rootReducer from '@/redux/reducers';
 
 // approach 1
 rootReducer.inject(optionalSlice);
-// why Q_Q
+// @ts-ignore
 listenerMiddleware.startListening({ actionCreator: optionalIncrement, effect: onOptionalIncrementEffect });
+// @ts-ignore
 listenerMiddleware.startListening({ actionCreator: optionalDecrement, effect: onOptionalDecrementEffect });
 
-export default function Home() {
+export default function OtherPage() {
   const dispatch = useDispatch();
   const count = useSelector(selectCount);
   const optionalCount = useSelector(selectOptionalCount);
@@ -23,8 +24,8 @@ export default function Home() {
 
   return (
     <main>
-      <h1>Home Page</h1>
-      <Link href="/other">to other</Link>
+      <h1>Other Page</h1>
+      <Link href="/">to Home</Link>
       <h1>count: {count}</h1>
       <h1>optionalCount: {optionalCount}</h1>
       <button onClick={() => { dispatch(increment()) }}>increment count</button>
