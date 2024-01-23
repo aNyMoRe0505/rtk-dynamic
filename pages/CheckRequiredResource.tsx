@@ -5,8 +5,6 @@ import InjectRoute from "./InjectRoute";
 const CheckRequiredResource = ({ children }) => {
   const { pathname } = useRouter();
 
-  console.log(pathname);
-
   switch (true) {
     case pathname === '/' || pathname === '/other':
       return <InjectRoute>{children}</InjectRoute>
