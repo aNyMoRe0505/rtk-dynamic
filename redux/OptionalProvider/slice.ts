@@ -1,8 +1,8 @@
-import type { Dispatch, ListenerEffect, WithSlice } from '@reduxjs/toolkit';
+import type { WithSlice } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
-import rootReducer, { RootState } from '../reducers';
-import { startAppListening } from '../configureStore';
+import rootReducer from '../reducers';
+import { setupListener } from './listeners';
 
 export const initialState = {
   optionalCount: 0,
@@ -25,22 +25,7 @@ declare module '../reducers' {
 
 export const { optionalIncrement, optionalDecrement } = slice.actions;
 
-const onOptionalIncrementEffect: ListenerEffect<ReturnType<typeof optionalIncrement>, RootState, Dispatch> = () => {
-  console.log('onOptionalIncrementEffect');
-};
-
-const onOptionalDecrementEffect: ListenerEffect<ReturnType<typeof optionalDecrement>, RootState, Dispatch> = () => {
-  console.log('onOptionalDecrementEffect');
-};
-
-startAppListening({
-  actionCreator: optionalIncrement,
-  effect: onOptionalIncrementEffect,
-});
-startAppListening({
-  actionCreator: optionalDecrement,
-  effect: onOptionalDecrementEffect,
-});
+setupListener();
 
 export default slice;
 
