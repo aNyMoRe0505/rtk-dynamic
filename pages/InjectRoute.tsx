@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addListener } from '@reduxjs/toolkit';
 
 import optionalSlice, { optionalIncrement, optionalDecrement } from '@/redux/OptionalProvider/slice';
 import { onOptionalIncrementEffect, onOptionalDecrementEffect } from '@/redux/OptionalProvider/listeners';
 
 import rootReducer from '@/redux/reducers';
+import { addAppListener } from '@/redux/configureStore';
 
 // @ts-ignore
 const InjectRoute = ({ children }) => {
@@ -18,8 +18,8 @@ const InjectRoute = ({ children }) => {
     // some condition needed
     rootReducer.inject(optionalSlice);
 
-    unsubscribeFn.push(dispatch(addListener({ actionCreator: optionalIncrement, effect: onOptionalIncrementEffect  })))
-    unsubscribeFn.push(dispatch(addListener({ actionCreator: optionalDecrement, effect: onOptionalDecrementEffect  })))
+    unsubscribeFn.push(dispatch(addAppListener({ actionCreator: optionalIncrement, effect: onOptionalIncrementEffect  })))
+    unsubscribeFn.push(dispatch(addAppListener({ actionCreator: optionalDecrement, effect: onOptionalDecrementEffect  })))
 
     setIsInitializeDone(true);
 
