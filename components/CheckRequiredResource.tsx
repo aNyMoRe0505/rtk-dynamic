@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import InjectRoute from "./InjectRoute";
+import InjectRoute from "../pages/InjectRoute";
 
 // @ts-ignore
 const CheckRequiredResource = ({ children }) => {
