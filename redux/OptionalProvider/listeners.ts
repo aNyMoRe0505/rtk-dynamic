@@ -1,5 +1,6 @@
-import type { Dispatch, ListenerEffect, ListenerMiddlewareInstance } from '@reduxjs/toolkit';
+import type { Dispatch, ListenerEffect } from '@reduxjs/toolkit';
 import type { RootState } from '../reducers';
+import { startAppListening } from '../configureStore';
 
 import { optionalIncrement, optionalDecrement } from './slice';
 
@@ -7,16 +8,16 @@ export const onOptionalIncrementEffect: ListenerEffect<ReturnType<typeof optiona
   console.log('onOptionalIncrementEffect');
 };
 
-export const onOptionalDecrementEffect: ListenerEffect<ReturnType<typeof optionalIncrement>, RootState, Dispatch> = () => {
+export const onOptionalDecrementEffect: ListenerEffect<ReturnType<typeof optionalDecrement>, RootState, Dispatch> = () => {
   console.log('onOptionalDecrementEffect');
 };
 
-export function setupListeners(startListening: ListenerMiddlewareInstance['startListening']) {
-  startListening({
+export function setupListeners() {
+  startAppListening({
     actionCreator: optionalIncrement,
     effect: onOptionalIncrementEffect,
   });
-  startListening({
+  startAppListening({
     actionCreator: optionalDecrement,
     effect: onOptionalDecrementEffect,
   });
