@@ -1,5 +1,6 @@
 import type { TypedStartListening, TypedAddListener } from "@reduxjs/toolkit"
 import { configureStore, createListenerMiddleware, addListener } from '@reduxjs/toolkit';
+import { setupListeners as setupOptionalListeners } from '@/redux/OptionalProvider/listeners';
 
 import rootReducer, { RootState } from './reducers';
 
@@ -15,3 +16,5 @@ export type AppDispatch = AppStore["dispatch"]
 
 export const startAppListening = listenerMiddleware.startListening as TypedStartListening<RootState, AppDispatch>
 export const addAppListener = addListener as TypedAddListener<RootState, AppDispatch>
+
+setupOptionalListeners(startAppListening);

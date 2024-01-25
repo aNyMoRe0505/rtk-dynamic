@@ -1,15 +1,15 @@
 import { combineSlices } from '@reduxjs/toolkit';
 
 import counterSlice from './CounterProvider/slice';
+import optionalSlice from './OptionalProvider/slice';
 
-
-export interface LazyLoadedSlices {}
 
 export type RootState = ReturnType<typeof rootReducer>;
 
 const rootReducer = combineSlices({
   [counterSlice.name]: counterSlice.reducer,
-}).withLazyLoadedSlices<LazyLoadedSlices>();;
+  [optionalSlice.name]: optionalSlice.reducer,
+});
 
 export default rootReducer;
 

@@ -13,10 +13,6 @@ const slice = createSlice({
   },
 });
 
-declare module '../reducers' {
-  export interface LazyLoadedSlices extends WithSlice<typeof slice> {}
-}
-
 export const { optionalIncrement, optionalDecrement } = slice.actions;
 
 export default slice;

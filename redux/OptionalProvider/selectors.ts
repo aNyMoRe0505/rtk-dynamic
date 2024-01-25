@@ -1,10 +1,8 @@
 
 import { createSelector } from '@reduxjs/toolkit';
 
-import rootReducer, { RootState } from '../reducers';
-import { initialState } from './slice';
+import { RootState } from '../reducers';
 
-export const selectOptionalStore = rootReducer.selector((state: RootState) => state.optional);
-export const selectOptionalStore2 = (state: RootState) => state.optional || initialState;
+export const selectOptionalStore = (state: RootState) => state.optional;
 
 export const selectOptionalCount = createSelector(selectOptionalStore, optionalCounter => optionalCounter?.optionalCount);

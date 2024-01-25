@@ -4,15 +4,7 @@ import Link from 'next/link'
 import { selectCount } from '@/redux/CounterProvider/selectors';
 import { selectOptionalCount } from '@/redux/OptionalProvider/selectors';
 import { increment } from '@/redux/CounterProvider/slice';
-import optionalSlice, { optionalIncrement, optionalDecrement } from '@/redux/OptionalProvider/slice';
-import { onOptionalIncrementEffect, onOptionalDecrementEffect } from '@/redux/OptionalProvider/listeners';
-import rootReducer from '@/redux/reducers';
-import { startAppListening } from '@/redux/configureStore';
-
-// approach 1
-rootReducer.inject(optionalSlice);
-startAppListening({ actionCreator: optionalIncrement, effect: onOptionalIncrementEffect });
-startAppListening({ actionCreator: optionalDecrement, effect: onOptionalDecrementEffect });
+import { optionalIncrement } from '@/redux/OptionalProvider/slice';
 
 export default function Home() {
   const dispatch = useDispatch();
